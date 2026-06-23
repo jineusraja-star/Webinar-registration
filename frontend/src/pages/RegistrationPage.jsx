@@ -5,14 +5,6 @@ import SuccessScreen from "../components/SuccessScreen";
 import { initiatePayment } from "../utils/razorpay";
 import ratulSur from "../image/be6a1fe2-3edb-47f2-8247-e1607c2c7166.jpg";
 
-const YEAR_OPTIONS = [
-  { value: "1st Year", label: "1st Year" },
-  { value: "2nd Year", label: "2nd Year" },
-  { value: "3rd Year", label: "3rd Year" },
-  { value: "4th Year", label: "4th Year" },
-  { value: "Graduated", label: "Graduated" },
-  { value: "Post Graduate", label: "Post Graduate" },
-];
 
 const DOMAIN_OPTIONS = [
   { value: "Equity Research & Investment Banking (The Analyst Track)", label: "Equity Research & Investment Banking (The Analyst Track)" },
@@ -36,28 +28,23 @@ const BACKGROUND_LAYERS = [
   {value: "Other", label: "Other" },
 ];
 
-const WORKSHOP_FEE = Number(import.meta.env.VITE_WORKSHOP_FEE || 499);
+const WORKSHOP_FEE = Number(import.meta.env.VITE_WORKSHOP_FEE || 399);
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 const INITIAL_FORM = {
   fullName: "",
-  dob: "",
   personalEmail: "",
   phoneNumber: "",
   city: "",
   currentStatus: "",
   collegeName: "",
-  course: "",
-  yearOfStudy: "",
-  aboutYourself: "",
   interestedDomain: "",
 };
 
 const STEPS = {
   1: { title: "Personal Information", subtitle: "Let us know who you are" },
   2: { title: "Academic Background", subtitle: "Tell us about your studies" },
-  3: { title: "About You", subtitle: "Share your interests and goals" },
-  4: { title: "Complete Your Booking", subtitle: "Secure your workshop slot" },
+  3: { title: "Complete Your Booking", subtitle: "Secure your workshop slot" },
 };
 
 const validateStep = (step, form) => {
@@ -67,8 +54,7 @@ const validateStep = (step, form) => {
   if (step === 1) {
     if (!form.fullName.trim()) errors.fullName = "Full name is required.";
     else if (form.fullName.trim().length < 3) errors.fullName = "Enter your full name.";
-    if (!form.dob) errors.dob = "Date of birth is required.";
-    if (!form.personalEmail.trim()) errors.personalEmail = "Personal email is required.";
+    if (!form.personalEmail.trim()) errors.personalEmail = "Email is required.";
     else if (!emailRx.test(form.personalEmail)) errors.personalEmail = "Enter a valid email address.";
     if (!form.phoneNumber.trim()) errors.phoneNumber = "Phone number is required.";
     else if (form.phoneNumber.trim().length < 10) errors.phoneNumber = "Enter a valid phone number.";
@@ -77,15 +63,8 @@ const validateStep = (step, form) => {
   if (step === 2) {
     if (!form.city.trim()) errors.city = "City is required.";
     if (!form.currentStatus) errors.currentStatus = "Please select your current status.";
-    if (!form.collegeName.trim()) errors.collegeName = "College or university name is required.";
-    if (!form.course.trim()) errors.course = "Course name is required.";
-    if (!form.yearOfStudy) errors.yearOfStudy = "Please select your year of study.";
-  }
-
-  if (step === 3) {
-    if (!form.aboutYourself.trim()) errors.aboutYourself = "Please write a short intro.";
-    else if (form.aboutYourself.trim().length < 30) errors.aboutYourself = "Write at least 30 characters.";
-    if (!form.interestedDomain) errors.interestedDomain = "Please select your interested domain.";
+    if (!form.collegeName.trim()) errors.collegeName = "Institute or organization  name is required.";
+        if (!form.interestedDomain) errors.interestedDomain = "Please select your interested domain.";
   }
 
   return errors;
@@ -366,18 +345,9 @@ const allConsentsAccepted =
                   required
                 />
               </div>
-              <FormField
-                label="Date of Birth"
-                name="dob"
-                type="date"
-                value={form.dob}
-                onChange={handleChange}
-                error={errors.dob}
-                required
-              />
               <div />
               <FormField
-                label="Personal Email ID"
+                label="Email ID"
                 name="personalEmail"
                 type="email"
                 value={form.personalEmail}
@@ -424,52 +394,12 @@ const allConsentsAccepted =
                 required
               />
               <FormField
-                label="College / University Name"
+                label="Institute/ organization Name"
                 name="collegeName"
                 value={form.collegeName}
                 onChange={handleChange}
-                  placeholder="e.g. IIT Bombay, BITS Pilani"
                   error={errors.collegeName}
                   required
-                />
-              </div>
-              <FormField
-                label="Course Pursuing"
-                name="course"
-                value={form.course}
-                onChange={handleChange}
-                placeholder="e.g. B.Tech Computer Science"
-                error={errors.course}
-                required
-              />
-              <FormField
-                label="Year of Study"
-                name="yearOfStudy"
-                type="select"
-                value={form.yearOfStudy}
-                onChange={handleChange}
-                placeholder="Select your year"
-                error={errors.yearOfStudy}
-                options={YEAR_OPTIONS}
-                required
-              />
-            </div>
-          )}
-
-          {step === 3 && (
-            <div style={styles.fieldsGrid}>
-              <div style={{ gridColumn: "1 / -1" }}>
-                <FormField
-                  label="Tell Us About Yourself"
-                  name="aboutYourself"
-                  type="textarea"
-                  value={form.aboutYourself}
-                  onChange={handleChange}
-                  placeholder="Introduce yourself, your background, what you've built, and what excites you about AI..."
-                  error={errors.aboutYourself}
-                  rows={5}
-                  required
-                  hint={`${form.aboutYourself.length} characters - aim for at least 30`}
                 />
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
@@ -488,14 +418,13 @@ const allConsentsAccepted =
             </div>
           )}
 
-          {step === 4 && (
+          {step === 3 && (
             <div style={styles.paymentSection}>
               <div style={styles.summaryCard}>
                 <div style={styles.summaryTitle}>Registration Summary</div>
                 {[
                   ["Name", form.fullName],
-                  ["College", form.collegeName],
-                  ["Course", `${form.course} - ${form.yearOfStudy}`],
+                  ["Institute/ organization", form.collegeName],
                   ["Domain", form.interestedDomain],
                   ["Personal Email", form.personalEmail],
                 ].map(([label, value]) => (

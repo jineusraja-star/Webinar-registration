@@ -20,15 +20,11 @@ async function submitRegistration(req, res, next) {
 
     const record = {
       fullName: trimValue(req.body.fullName),
-      dob: trimValue(req.body.dob),
       personalEmail: trimValue(req.body.personalEmail),
       phoneNumber: trimValue(req.body.phoneNumber),
       city: trimValue(req.body.city),
       currentStatus: trimValue(req.body.currentStatus),
       collegeName: trimValue(req.body.collegeName),
-      course: trimValue(req.body.course),
-      yearOfStudy: trimValue(req.body.yearOfStudy),
-      aboutYourself: trimValue(req.body.aboutYourself),
       interestedDomain: trimValue(req.body.interestedDomain),
       paymentId: trimValue(req.body.payment?.paymentId),
       orderId: trimValue(req.body.payment?.orderId),

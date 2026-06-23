@@ -16,13 +16,11 @@ function validateRegistrationRequest(req, res, next) {
   const body = req.body || {};
   const requiredFields = [
     "fullName",
-    "dob",
     "personalEmail",
-    "collegeEmail",
+    "phoneNumber",
+    "city",
+    "currentStatus",
     "collegeName",
-    "course",
-    "yearOfStudy",
-    "aboutYourself",
     "interestedDomain",
   ];
 
