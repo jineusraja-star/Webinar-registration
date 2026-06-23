@@ -306,7 +306,15 @@ const allConsentsAccepted =
     <div style={styles.pageShell}>
       <BackgroundLayers />
 
-      <div style={styles.layout}>
+      <div
+  style={{
+    ...styles.layout,
+    gridTemplateColumns:
+      window.innerWidth <= 768
+        ? "1fr"
+        : "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
+  }}
+>
         <aside style={styles.leftRail}>
           <LandingRail />
         </aside>
