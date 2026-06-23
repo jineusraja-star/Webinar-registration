@@ -49,7 +49,7 @@ const STEPS = {
 
 const validateStep = (step, form) => {
   const errors = {};
-  const emailRx = /^[^\s@]+@[^\s@]+$/;
+  const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (step === 1) {
     if (!form.fullName.trim()) errors.fullName = "Full name is required.";
@@ -189,14 +189,11 @@ const RegistrationPage = () => {
   const [consents, setConsents] = useState({
   consent1: false,
   consent2: false,
-  consent3: false,
 });
 
 const allConsentsAccepted =
   consents.consent1 &&
-  consents.consent2 &&
-  consents.consent3;
-
+  consents.consent2,
   const paymentId = paymentDetails?.paymentId || null;
 
   const handleChange = (event) => {
