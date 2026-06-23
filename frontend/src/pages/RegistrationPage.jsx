@@ -49,7 +49,7 @@ const STEPS = {
 
 const validateStep = (step, form) => {
   const errors = {};
-  const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRx = /^[^\s@]+@[^\s@]+$/;
 
   if (step === 1) {
     if (!form.fullName.trim()) errors.fullName = "Full name is required.";
