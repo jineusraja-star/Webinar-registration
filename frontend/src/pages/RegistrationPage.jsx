@@ -434,7 +434,7 @@ const allConsentsAccepted =
 
               <div style={styles.priceCard}>
                 <div style={styles.priceLeft}>
-                  <div style={styles.priceName}>AI Workshop 2025</div>
+                  <div style={styles.priceName}>AI Workshop 2026</div>
                   <div style={styles.priceDesc}>Full access, certificate, and resources</div>
                 </div>
                 <div style={styles.priceAmount}>₹{WORKSHOP_FEE}</div>
