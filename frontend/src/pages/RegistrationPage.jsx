@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StepIndicator from "../components/StepIndicator";
 import FormField from "../components/FormField";
 import SuccessScreen from "../components/SuccessScreen";
 import { initiatePayment } from "../utils/razorpay";
 import ratulSur from "../image/be6a1fe2-3edb-47f2-8247-e1607c2c7166.jpg";
 
+
+const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+React.useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
 const DOMAIN_OPTIONS = [
   { value: "Equity Research & Investment Banking (The Analyst Track)", label: "Equity Research & Investment Banking (The Analyst Track)" },
@@ -277,7 +289,15 @@ const allConsentsAccepted =
     return (
       <div style={styles.pageShell}>
         <BackgroundLayers />
-        <div style={styles.layout}>
+        <div
+  style={{
+    ...styles.layout,
+    gridTemplateColumns:
+      window.innerWidth <= 768
+        ? "1fr"
+        : "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
+  }}
+>
           <section style={styles.leftRail}>
             <LandingRail />
           </section>
@@ -306,8 +326,22 @@ const allConsentsAccepted =
     <div style={styles.pageShell}>
       <BackgroundLayers />
 
-      <div style={styles.layout}>
-        <aside style={styles.leftRail}>
+      <div
+  style={{
+    ...styles.layout,
+    gridTemplateColumns:
+      window.innerWidth <= 768
+        ? "1fr"
+        : "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
+  }}
+>
+        <aside
+  style={{
+    ...styles.leftRail,
+    position: window.innerWidth <= 768 ? "relative" : "sticky",
+    top: window.innerWidth <= 768 ? 0 : 24,
+  }}
+>
           <LandingRail />
         </aside>
 
@@ -806,10 +840,8 @@ const styles = {
     alignItems: "start",
   },
   leftRail: {
-    position: "sticky",
-    top: 24,
-    alignSelf: "start",
-  },
+  alignSelf: "start",
+},
   rightRail: {
     minWidth: 0,
   },
