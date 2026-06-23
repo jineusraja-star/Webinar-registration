@@ -38,7 +38,7 @@ export async function initiatePayment(form, onSuccess, onError) {
       body: JSON.stringify({
         fullName: form.fullName,
         personalEmail: form.personalEmail,
-        amount: Number(import.meta.env.VITE_WORKSHOP_FEE || 49900),
+        amount: Number(import.meta.env.VITE_WORKSHOP_FEE || 399),
       }),
     });
 
