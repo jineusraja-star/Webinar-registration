@@ -3,8 +3,8 @@ const crypto = require("crypto");
 const { createRazorpayClient, isRazorpayConfigured } = require("../config/razorpay");
 
 function getWorkshopAmount() {
-  const amount = Number(process.env.WORKSHOP_FEE || 49900);
-  return Number.isFinite(amount) && amount > 0 ? Math.round(amount) : 49900;
+  const amount = Number(process.env.WORKSHOP_FEE || 399);
+  return Number.isFinite(amount) && amount > 0 ? Math.round(amount) : 399;
 }
 
 function createDemoOrder(amount, name) {
@@ -41,14 +41,14 @@ async function createOrder(req, res, next) {
 
     const client = createRazorpayClient();
     const order = await client.orders.create({
-      amount,
-      currency: "INR",
-      receipt: `reg_${Date.now()}`,
-      notes: {
-        attendeeName,
-        personalEmail: String(req.body.personalEmail || ""),
-      },
-    });
+  amount: amount * 100,
+  currency: "INR",
+  receipt: `reg_${Date.now()}`,
+  notes: {
+    attendeeName,
+    personalEmail: String(req.body.personalEmail || ""),
+  },
+});
 
     return res.json({
       success: true,

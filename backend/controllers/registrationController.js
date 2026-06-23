@@ -3,8 +3,8 @@ const { sendConfirmationEmail } = require("../utils/emailService");
 const { verifyPaymentSignature } = require("./paymentController");
 
 function getWorkshopAmount() {
-  const amount = Number(process.env.WORKSHOP_FEE || 49900);
-  return Number.isFinite(amount) && amount > 0 ? Math.round(amount) : 49900;
+  const amount = Number(process.env.WORKSHOP_FEE || 399);
+  return Number.isFinite(amount) && amount > 0 ? Math.round(amount) : 399;
 }
 
 function trimValue(value) {
