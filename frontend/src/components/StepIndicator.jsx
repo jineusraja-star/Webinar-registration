@@ -1,11 +1,11 @@
 import React from "react";
 
-const steps = ["Personal", "Academic", "About", "Payment"];
+const steps = ["Personal", "Academic", "Payment"];
 
 const StepIndicator = ({ currentStep, completedSteps = [] }) => {
   return (
     <div style={{ display: "grid", gap: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
         {steps.map((label, index) => {
           const stepNumber = index + 1;
           const isActive = currentStep === stepNumber;

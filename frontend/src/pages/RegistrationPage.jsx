@@ -193,7 +193,8 @@ const RegistrationPage = () => {
 
 const allConsentsAccepted =
   consents.consent1 &&
-  consents.consent2,
+  consents.consent2;
+
   const paymentId = paymentDetails?.paymentId || null;
 
   const handleChange = (event) => {
@@ -324,7 +325,7 @@ const allConsentsAccepted =
           </div>
 
           <div style={styles.stepHeader}>
-            <div style={styles.stepBadge}>Step {step} of 4</div>
+            <div style={styles.stepBadge}>Step {step} of 3</div>
             <h2 style={styles.stepTitle}>{STEPS[step].title}</h2>
             <p style={styles.stepSubtitle}>{STEPS[step].subtitle}</p>
           </div>
@@ -342,7 +343,6 @@ const allConsentsAccepted =
                   required
                 />
               </div>
-              <div />
               <FormField
                 label="Email ID"
                 name="personalEmail"
@@ -631,7 +631,7 @@ const allConsentsAccepted =
               </button>
             )}
 
-            {step < 4 && (
+            {step < 3 && (
               <button onClick={handleNext} style={{ ...styles.nextBtn, marginLeft: step === 1 ? "auto" : undefined }}>
                 Continue
               </button>
