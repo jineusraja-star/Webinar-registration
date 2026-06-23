@@ -303,7 +303,13 @@ const allConsentsAccepted =
           </section>
           <main style={styles.rightRail}>
             <div style={styles.card}>
-                <div style={styles.eventStrip}>
+                <div
+  style={{
+    ...styles.eventStrip,
+    flexDirection: isMobile ? "column" : "row",
+    alignItems: isMobile ? "flex-start" : "center",
+  }}
+>
                   <div style={styles.eventStripLeft}>
                     <span style={styles.eventPill}>Live on campus</span>
                     <span style={styles.eventText}>AI Workshop Webinar • Interactive demo • Q&amp;A</span>
@@ -347,7 +353,13 @@ const allConsentsAccepted =
 
         <main style={styles.rightRail}>
         <div style={styles.card}>
-          <div style={styles.eventStrip}>
+          <div
+  style={{
+    ...styles.eventStrip,
+    flexDirection: isMobile ? "column" : "row",
+    alignItems: isMobile ? "flex-start" : "center",
+  }}
+>
             <div style={styles.eventStripLeft}>
               <span style={styles.eventPill}>Live on campus</span>
               <span style={styles.eventText}>AI Productivity System for Modern Professionals • Interactive demo • Q&amp;A</span>
@@ -365,7 +377,13 @@ const allConsentsAccepted =
           </div>
 
           {step === 1 && (
-            <div style={styles.fieldsGrid}>
+            <div
+  style={{
+    ...styles.fieldsGrid,
+    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+    padding: isMobile ? "20px" : "28px 32px",
+  }}
+>
               <div style={{ gridColumn: "1 / -1" }}>
                 <FormField
                   label="Full Name"
@@ -658,7 +676,13 @@ const allConsentsAccepted =
             </div>
           )}
 
-          <div style={styles.navRow}>
+          <div
+  style={{
+    ...styles.navRow,
+    flexDirection: isMobile ? "column" : "row",
+    gap: isMobile ? 12 : 0,
+  }}
+>
             {step > 1 && (
               <button onClick={handleBack} style={styles.backBtn}>
                 Back
@@ -830,15 +854,15 @@ const styles = {
     pointerEvents: "none",
   },
   layout: {
-    position: "relative",
-    zIndex: 1,
-    maxWidth: 1360,
-    margin: "0 auto",
-    display: "grid",
-    gridTemplateColumns: "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
-    gap: 24,
-    alignItems: "start",
-  },
+  position: "relative",
+  zIndex: 1,
+  maxWidth: 1360,
+  margin: "0 auto",
+  display: "grid",
+  gridTemplateColumns: "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
+  gap: 24,
+  alignItems: "start",
+},
   leftRail: {
   alignSelf: "start",
 },
@@ -1224,14 +1248,11 @@ background: `linear-gradient(
     marginBottom: 12,
   },
   summaryRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    padding: "8px 0",
-    borderBottom: "1px solid rgba(13,94,23,0.10)",
-    fontSize: 13,
-    gap: 12,
-  },
+  display: "flex",
+  justifyContent: "space-between",
+  flexWrap: "wrap",
+  gap: 8,
+},
   summaryLabel: { color: "#35583a", flexShrink: 0 },
   summaryValue: { color: "#0d5e17", textAlign: "right", fontWeight: 600, wordBreak: "break-word", maxWidth: "60%" },
   priceCard: {
