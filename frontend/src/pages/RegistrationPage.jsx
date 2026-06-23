@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import StepIndicator from "../components/StepIndicator";
 import FormField from "../components/FormField";
 import SuccessScreen from "../components/SuccessScreen";
 import { initiatePayment } from "../utils/razorpay";
 import ratulSur from "../image/be6a1fe2-3edb-47f2-8247-e1607c2c7166.jpg";
 
-
-const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-React.useEffect(() => {
-  const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768);
-  };
-
-  window.addEventListener("resize", handleResize);
-
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
 
 const DOMAIN_OPTIONS = [
   { value: "Equity Research & Investment Banking (The Analyst Track)", label: "Equity Research & Investment Banking (The Analyst Track)" },
@@ -289,27 +277,13 @@ const allConsentsAccepted =
     return (
       <div style={styles.pageShell}>
         <BackgroundLayers />
-        <div
-  style={{
-    ...styles.layout,
-    gridTemplateColumns:
-      window.innerWidth <= 768
-        ? "1fr"
-        : "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
-  }}
->
+        <div style={styles.layout}>
           <section style={styles.leftRail}>
             <LandingRail />
           </section>
           <main style={styles.rightRail}>
             <div style={styles.card}>
-                <div
-  style={{
-    ...styles.eventStrip,
-    flexDirection: isMobile ? "column" : "row",
-    alignItems: isMobile ? "flex-start" : "center",
-  }}
->
+                <div style={styles.eventStrip}>
                   <div style={styles.eventStripLeft}>
                     <span style={styles.eventPill}>Live on campus</span>
                     <span style={styles.eventText}>AI Workshop Webinar • Interactive demo • Q&amp;A</span>
@@ -332,34 +306,14 @@ const allConsentsAccepted =
     <div style={styles.pageShell}>
       <BackgroundLayers />
 
-      <div
-  style={{
-    ...styles.layout,
-    gridTemplateColumns:
-      window.innerWidth <= 768
-        ? "1fr"
-        : "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
-  }}
->
-        <aside
-  style={{
-    ...styles.leftRail,
-    position: window.innerWidth <= 768 ? "relative" : "sticky",
-    top: window.innerWidth <= 768 ? 0 : 24,
-  }}
->
+      <div style={styles.layout}>
+        <aside style={styles.leftRail}>
           <LandingRail />
         </aside>
 
         <main style={styles.rightRail}>
         <div style={styles.card}>
-          <div
-  style={{
-    ...styles.eventStrip,
-    flexDirection: isMobile ? "column" : "row",
-    alignItems: isMobile ? "flex-start" : "center",
-  }}
->
+          <div style={styles.eventStrip}>
             <div style={styles.eventStripLeft}>
               <span style={styles.eventPill}>Live on campus</span>
               <span style={styles.eventText}>AI Productivity System for Modern Professionals • Interactive demo • Q&amp;A</span>
@@ -377,13 +331,7 @@ const allConsentsAccepted =
           </div>
 
           {step === 1 && (
-            <div
-  style={{
-    ...styles.fieldsGrid,
-    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-    padding: isMobile ? "20px" : "28px 32px",
-  }}
->
+            <div style={styles.fieldsGrid}>
               <div style={{ gridColumn: "1 / -1" }}>
                 <FormField
                   label="Full Name"
@@ -676,13 +624,7 @@ const allConsentsAccepted =
             </div>
           )}
 
-          <div
-  style={{
-    ...styles.navRow,
-    flexDirection: isMobile ? "column" : "row",
-    gap: isMobile ? 12 : 0,
-  }}
->
+          <div style={styles.navRow}>
             {step > 1 && (
               <button onClick={handleBack} style={styles.backBtn}>
                 Back
@@ -854,18 +796,20 @@ const styles = {
     pointerEvents: "none",
   },
   layout: {
-  position: "relative",
-  zIndex: 1,
-  maxWidth: 1360,
-  margin: "0 auto",
-  display: "grid",
-  gridTemplateColumns: "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
-  gap: 24,
-  alignItems: "start",
-},
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 1360,
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "minmax(280px, 0.95fr) minmax(0, 1.15fr)",
+    gap: 24,
+    alignItems: "start",
+  },
   leftRail: {
-  alignSelf: "start",
-},
+    position: "sticky",
+    top: 24,
+    alignSelf: "start",
+  },
   rightRail: {
     minWidth: 0,
   },
@@ -1248,11 +1192,14 @@ background: `linear-gradient(
     marginBottom: 12,
   },
   summaryRow: {
-  display: "flex",
-  justifyContent: "space-between",
-  flexWrap: "wrap",
-  gap: 8,
-},
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    padding: "8px 0",
+    borderBottom: "1px solid rgba(13,94,23,0.10)",
+    fontSize: 13,
+    gap: 12,
+  },
   summaryLabel: { color: "#35583a", flexShrink: 0 },
   summaryValue: { color: "#0d5e17", textAlign: "right", fontWeight: 600, wordBreak: "break-word", maxWidth: "60%" },
   priceCard: {
