@@ -51,13 +51,14 @@ console.log("SMTP connection successful");
       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
         <h2 style="margin: 0 0 12px;">Registration Confirmed</h2>
         <p>Hello ${name},</p>
-        <p>Your AI Workshop registration has been confirmed.</p>
+        <p>Congratulations! 🎉 Your AI Workshop registration has been confirmed.</p>
         <ul>
           <li><strong>Payment ID:</strong> ${paymentId}</li>
           <li><strong>Amount:</strong> INR ${workshopAmount}</li>
-          <li><strong>Payment mode:</strong> ${mode}</li>
         </ul>
-        <p>We will share the event details and joining instructions soon.</p>
+        
+        <p> Join the Whatsapp group for updates: <a href="https://chat.whatsapp.com/your-group-link" target="_blank">Click here to join</a></p>
+        <p> We are excited to have you join us for the workshop. Please keep an eye on your inbox for further details and instructions.</p>
       </div>
     `,
   });
