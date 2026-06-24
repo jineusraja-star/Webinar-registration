@@ -41,7 +41,7 @@ async function createOrder(req, res, next) {
 
     const client = createRazorpayClient();
     const order = await client.orders.create({
-  amount: amount,
+  amount: amount * 100,
   currency: "INR",
   receipt: `reg_${Date.now()}`,
   notes: {
