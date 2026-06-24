@@ -57,7 +57,7 @@ console.log("SMTP connection successful");
           <li><strong>Amount:</strong> INR ${workshopAmount}</li>
         </ul>
         
-        <p> Join the Whatsapp group for updates: <a href="https://chat.whatsapp.com/your-group-link" target="_blank">Click here to join</a></p>
+        <p> Join the Whatsapp group for updates: <a href="https://chat.whatsapp.com/HuF7W9f90YqIsbS8p0Qkc3" target="_blank">Click here to join</a></p>
         <p> We are excited to have you join us for the workshop. Please keep an eye on your inbox for further details and instructions.</p>
       </div>
     `,
